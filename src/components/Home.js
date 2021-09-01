@@ -53,18 +53,124 @@ function Home() {
   return (
     <div>
       <h1 className="ml-8">Welcome Back</h1>
-      <a className="mx-auto" href="/notes">
-        Course Material
-      </a>
-      <div>
-        <a className="mx-auto" href="/contact">
-          Contact Us
-        </a>
-      </div>
+      <div className="form-group">
+        <fieldset className="form-group ">
+          <div className="row shadow-lg p-3 mb-3  bg-white rounded">
+            <legend className="col-form-label col-sm-2 pt-0 mr-3 ">
+              Semester
+            </legend>
 
+            <div className="col-sm-10">
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="gridRadios"
+                  id="gridRadios1"
+                  value="Semester 1"
+                  defaultChecked
+                  onClick={handleSemesterChange}
+                />
+                <label className="form-check-label" htmlFor="gridRadios1">
+                  Semester 1
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="gridRadios"
+                  id="gridRadios2"
+                  value="Semester 2"
+                  onClick={handleSemesterChange}
+                />
+                <label className="form-check-label" htmlFor="gridRadios2">
+                  Semester 2
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset className="form-group ">
+          <div className="row shadow-lg p-3 mb-2  bg-white rounded">
+            <legend className="col-form-label col-sm-2 pt-0 mr-2 ">Year</legend>
+
+            <div className="col-sm-10">
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="grid2"
+                  id="gridRadios3"
+                  value="Year 1"
+                  onClick={changeYear}
+                  defaultChecked
+                />
+                <label className="form-check-label" htmlFor="gridRadios3">
+                  Year 1
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="grid2"
+                  id="gridRadios4"
+                  value="Year 2"
+                  onClick={changeYear}
+                />
+                <label className="form-check-label" htmlFor="gridRadios4">
+                  Year 2
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="grid2"
+                  id="gridRadios5"
+                  value="Year 3"
+                  onClick={changeYear}
+                />
+                <label className="form-check-label" htmlFor="gridRadios5">
+                  Year 3
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="grid2"
+                  id="gridRadios6"
+                  value="Year 4"
+                  onClick={changeYear}
+                />
+                <label className="form-check-label" htmlFor="gridRadios6">
+                  Year 4
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      {loading && <Loading property=" Acada Courses" />}
+      <div>
+        {resourceDocuments.length === 0 && !loading && (
+          <div className="alert alert-danger" role="alert">
+            OOOps! No results for your Selection yet.
+          </div>
+        )}
+        {error && <div>Some error occured;</div>}
+        {resourceDocuments && (
+          <div className="d-flex flex-wrap ">
+            {resourceDocuments.map((course) => {
+              return <CourseCard course={course} key={course.key} />;
+            })}
+          </div>
+        )}
+      </div>
       <footer
         style={{
-          position: "fixed",
           left: "0",
           bottom: "0",
           width: "100%",
